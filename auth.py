@@ -8,7 +8,7 @@ from custom_request import get_request, post_request
 from mail import get_latest_otp
 
 TOKEN_JSON_PATH = "/home/sai-ganesh-s/Projects/rcb_ticket_notifier_v3/token.json"
-WAIT_FOR_OTP=20
+WAIT_FOR_OTP=30
 
 class Auth:
     def __init__(self):
@@ -121,9 +121,32 @@ class Auth:
                 except Exception as e:
                     logger.exception(f"Error updating token file for {number}: {e}")
 
+    def populate_manually(self):
+        while(True):
+            mobile=input("Mobile: ")
+            if mobile == "x":
+                break
+            response=self.login(mobile)
+            if response and response["status"]=="Success":
+                otp=input(f"OTP for {mobile}: ")
+                auth_token=self.verify(mobile,otp)
+                logger.info(f"{mobile} - Auth token: {auth_token}")
+                try:
+                    with open(TOKEN_JSON_PATH, "r") as token_file:
+                        token_dict = json.loads(token_file.read())
+                    token_dict[mobile] = auth_token
+
+                    with open(TOKEN_JSON_PATH, "w") as token_file:
+                        json.dump(token_dict, token_file, indent=4)
+                    logger.info(f"Token successfully updated for {mobile}")
+                except Exception as e:
+                    logger.exception(f"Error updating token file for {mobile}: {e}")
+            else:
+                logger.info(response)
 
 if __name__ == "__main__":
     auth = Auth()
     auth.validate()
     # invalid_numbers=auth.get_invalid_tokens()
     # auth.populate_valid_tokens(invalid_numbers)
+    # auth.populate_manually()
