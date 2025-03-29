@@ -1,0 +1,32 @@
+config={
+    "TELEGRAM_BOT_TOKEN":"",
+    "GMAIL_APP_PASSWORDS":{
+        
+        "example@gmail.com":"bsaj ajsj uiaa asjs"
+    }
+    ,
+    "TELEGRAM_CHAT_IDS":[
+        {
+            "name":"A",
+            "chat_id":11111111
+        },
+        {
+            "name":"B",
+            "chat_id":11111111
+        },
+        {
+            "name":"C",
+            "chat_id":11111111
+        }
+    ],
+    "RCB_PAYLOAD_DETAILS":[
+        {
+            "email":"example@gmail.com",
+            "mobile":"9999999999",
+            "firstName":"A",
+            "lastName":"B"
+        }
+    ]
+}
+
+# https://myaccount.google.com/apppasswords
