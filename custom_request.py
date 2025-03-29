@@ -18,7 +18,7 @@ headers = {
             "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
         }
 
-def get_request(url,auth_token=None,error_msg=None,notify=False):
+def get_request(url,auth_token=None,error_msg=None,notify=True):
     try:
         if auth_token:
             headers["authorization"]=f"Bearer {auth_token}"
@@ -33,7 +33,7 @@ def get_request(url,auth_token=None,error_msg=None,notify=False):
             send_telegram_messages(error_msg+f" | {e}")
         return None
     
-def post_request(url,payload,auth_token=None,error_msg=None,notify=False):
+def post_request(url,payload,auth_token=None,error_msg=None,notify=True):
     try:
         if auth_token:
             headers["authorization"]=f"Bearer {auth_token}"
