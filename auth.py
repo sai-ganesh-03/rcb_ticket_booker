@@ -147,6 +147,4 @@ class Auth:
 if __name__ == "__main__":
     auth = Auth()
     auth.validate()
-    # invalid_numbers=auth.get_invalid_tokens()
-    # auth.populate_valid_tokens(invalid_numbers)
     # auth.populate_manually()
